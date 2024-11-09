@@ -1,18 +1,30 @@
 "use client";
-import { useSession } from "next-auth/react";
-import React from "react";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/tabs";
+import HeadPost from "./post/HeadPost";
+import PostListFollowing from "./post/PostListFollowing";
+import PostListForU from "./post/PostListForU";
 
 const HomePage = () => {
-  const { data: session, status } = useSession();
-  console.log(session.user);
-  console.log(status);
   return (
-    <div>
-      {status === "unauthenticated" ? (
-        <p>Login?</p>
-      ) : (
-        <h1>{session.user?.name}</h1>
-      )}
+    <div className="">
+      <Tabs defaultValue="for-u">
+        <TabsList className="flex justify-around  w-full bg-black/40 backdrop-blur-md  sticky top-0 border-b-[1px] rounded-none">
+          <TabsTrigger value="for-u">Untuk Anda</TabsTrigger>
+          <TabsTrigger value="following">Mengikuti</TabsTrigger>
+        </TabsList>
+        <HeadPost />
+        <TabsContent value="for-u">
+          <PostListForU />
+        </TabsContent>
+        <TabsContent value="following">
+          <PostListFollowing />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

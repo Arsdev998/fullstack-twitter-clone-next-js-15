@@ -4,8 +4,10 @@ import Sidebar from "../../../components/layout/Sidebar";
 
 function HomeLayout({ children }) {
   return (
-    <section className="flex">
-      <Sidebar />
+    <section className="flex min-h-screen">
+      <aside className="">
+        <Sidebar />
+      </aside>
       <main>{children}</main>
       <RightBar />
     </section>

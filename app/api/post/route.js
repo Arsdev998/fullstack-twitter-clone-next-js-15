@@ -20,7 +20,21 @@ export async function POST(req) {
 
 export async function GET() {
   try {
-    const post = await prisma.post.findMany();
+    const post = await prisma.post.findMany({
+      take: 10,
+      skip: 0,
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            image: true,
+          },
+        },
+        like: true,
+      },
+    });
     return NextResponse.json(post);
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
