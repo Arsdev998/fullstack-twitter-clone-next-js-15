@@ -5,9 +5,12 @@ const nextConfig = {
       {
         hostname: "i.pinimg.com",
       },
+      {
+        hostname: "avdgliwzexqzqmdphhul.supabase.co",
+      },
     ],
   },
-}
+};
 
 
 export default nextConfig;
